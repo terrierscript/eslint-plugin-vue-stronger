@@ -42,7 +42,7 @@ tester.run("no-mixin", rule, {
     `,
       errors: [
         {
-          message: "no-mixins",
+          message: "mixins is disallowed",
           line: 4
         }
       ]
@@ -56,7 +56,7 @@ tester.run("no-mixin", rule, {
       `,
       errors: [
         {
-          message: "no-mixins",
+          message: "mixins is disallowed",
           line: 4
         }
       ]
@@ -70,10 +70,7 @@ tester.run("no-mixin", rule, {
     //   new Vue(vueOption)
     //   `,
     //   errors: [
-    //     {
-    //       message: "no-mixins",
-    //       line: 4
-    //     }
+
     //   ]
     // }
   ]
