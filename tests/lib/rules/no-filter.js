@@ -2,36 +2,41 @@
  * @fileoverview Disallow filters
  * @author terrierscript
  */
-"use strict";
+"use strict"
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require("../../../lib/rules/no-filter"),
-
-    RuleTester = require("eslint").RuleTester;
-
+const rule = require("../../../lib/rules/no-filter")
+const RuleTester = require("eslint").RuleTester
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
-ruleTester.run("no-filter", rule, {
-
-    valid: [
-
-        // give me some code that won't trigger a warning
-    ],
-
-    invalid: [
+const tester = new RuleTester({
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    ecmaVersion: 2015,
+    sourceType: "module"
+  }
+})
+tester.run("no-filter", rule, {
+  valid: [
+    {
+      code: "<template><span>{{capitalize(message)}}</span></template>"
+    }
+    // give me some code that won't trigger a warning
+  ],
+  invalid: [
+    {
+      code: "<template><span>{{ msg | capitalize }}</span></template>",
+      errors: [
         {
-            code: "{{ message | capitalize }}",
-            errors: [{
-                message: "Fill me in.",
-                type: "Me too"
-            }]
+          message: "Don't use filter"
         }
-    ]
-});
+      ]
+    }
+  ]
+})
